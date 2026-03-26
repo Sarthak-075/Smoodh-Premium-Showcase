@@ -173,7 +173,7 @@ export default function ProductBottleScroll({
   return (
     <div 
       ref={containerRef} 
-      style={{ height: '500vh', position: 'relative', contain: 'layout paint' }}
+      style={{ height: '500vh', position: 'relative' }}
     >
 
       {/* Loading overlay */}
@@ -220,7 +220,7 @@ export default function ProductBottleScroll({
       )}
 
       {/* Sticky canvas and overlays */}
-      <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{ position: 'sticky', top: 0, height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         
         {/* Cinematic backlight glow */}
         <div

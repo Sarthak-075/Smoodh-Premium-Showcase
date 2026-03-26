@@ -46,7 +46,7 @@ export default function Home() {
   const activeFlavor: Flavor = PRODUCTS[activeIndex].flavor;
 
   return (
-    <div className="bg-[#050505] min-h-screen relative overflow-hidden text-white selection:bg-white/20">
+    <div className="bg-[#050505] min-h-screen relative text-white selection:bg-white/20">
 
       {/* Animated flavor background glow */}
       <AnimatePresence mode="popLayout">
@@ -71,7 +71,7 @@ export default function Home() {
           initial="enter"
           animate="center"
           exit="exit"
-          className="relative z-10 w-full min-h-screen origin-center"
+          className="relative z-10 w-full overflow-visible origin-center"
         >
           <ProductBottleScroll flavor={activeFlavor} />
           <ProductDetails flavor={activeFlavor} />
