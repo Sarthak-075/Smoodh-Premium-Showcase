@@ -1,101 +1,112 @@
-# Smoodh — Premium Flavored Milkshake Experience
+# 🥛 Smoodh Premium Showcase
 
-A cinematic, Awwwards-level product showcase built with **Next.js 14**, **Framer Motion**, and **Tailwind CSS**.
+A premium, scroll-driven product experience inspired by Apple-style storytelling and cinematic UI design.
 
-![Smoodh Preview](public/lassi.png)
+🔗 **Live Demo:** https://smoodh-premium-showcase.vercel.app/
+
+---
 
 ## ✨ Features
 
-- **120-frame canvas scroll animation** with physics-based spring motion
-- **3-layer parallax particle system** with optical depth-of-field blur
-- **Cinematic crossfade transitions** between 3 product flavors
-- **Extreme glassmorphism navbar** with scroll-triggered border glow
-- **Awwwards-level micro-interactions**: 3D hover, magnetic CTA, shimmer beams
-- **Noise texture overlay** for a photographic, tactile feel
-- Static export — deploys to **Netlify / Vercel** with zero config
+* 🎬 Scroll-based product animation (120-frame sequence)
+* ⚡ Smooth canvas rendering with optimized performance
+* 🎨 Cinematic UI with depth, lighting, and gradients
+* 🧠 Advanced motion design using Framer Motion
+* 🤖 Interactive chatbot for user queries
+* 📱 Fully responsive across devices
+* 🚀 Deployed on Vercel for optimal performance
 
-## 🧰 Tech Stack
+---
 
-| Layer | Technology |
-|-------|------------|
-| Framework | Next.js 14 (App Router) |
-| Language | TypeScript |
-| Animation | Framer Motion v12 |
-| Styling | Tailwind CSS v3 |
-| Font | Outfit (Google Fonts) |
-| Deployment | Netlify Edge (static export) |
+## 🛠 Tech Stack
 
-## 🚀 Getting Started
+* Next.js 14 (App Router)
+* TypeScript
+* Tailwind CSS
+* Framer Motion
+* HTML5 Canvas
 
-### Prerequisites
-- Node.js 18+
-- npm or yarn
+---
 
-### Install dependencies
+## 📸 Preview
+
+> Add a screenshot or GIF of the website here
+
+---
+
+## ⚙️ Installation
+
 ```bash
+git clone https://github.com/Sarthak-075/Smoodh-Premium-Showcase.git
+cd Smoodh-Premium-Showcase
 npm install
-```
-
-### Run the development server
-```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000)
 
-### Build for production
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 🚀 Build
+
 ```bash
 npm run build
 ```
-The optimized static output is generated in the `out/` directory.
+
+---
+
+## 🌐 Deployment
+
+Deployed on Vercel:  
+https://smoodh-premium-showcase.vercel.app/
+
+To deploy your own fork:
+1. Push to GitHub
+2. Import the repo into [Vercel](https://vercel.com)
+3. Set build command: `npm run build`, output: `out/`
+
+---
 
 ## 📁 Project Structure
 
 ```
 smoodh/
-├── app/                    # Next.js App Router
-│   ├── layout.tsx          # Root layout (Navbar, Noise overlay, fonts)
-│   ├── page.tsx            # Home page — product switcher orchestration
-│   └── globals.css         # Global styles and shimmer keyframe
-│
-├── components/             # UI components
-│   ├── ArrowButton.tsx     # Left/right navigation arrows
-│   ├── BuyNowSection.tsx   # Pricing card with magnetic CTA
-│   ├── FloatingParticles.tsx # 3-layer parallax particle system
-│   ├── Footer.tsx          # Site footer
-│   ├── Navbar.tsx          # Glassmorphism fixed navbar
-│   ├── NoiseOverlay.tsx    # SVG noise texture overlay
-│   ├── ProductBottleScroll.tsx # Canvas 120-frame scroll engine
-│   ├── ProductDetails.tsx  # Two-column product info section
-│   └── ProductTextOverlays.tsx # Scroll-triggered cinematic copy
-│
+├── app/
+│   ├── layout.tsx         # Root layout with providers
+│   ├── page.tsx           # Main page with product orchestration
+│   └── globals.css        # Global styles
+├── components/
+│   ├── ArrowButton.tsx    # Left/right product navigation
+│   ├── BuyNowSection.tsx  # Pricing and CTA section
+│   ├── Chatbot.tsx        # Floating Q&A chatbot
+│   ├── FloatingParticles.tsx
+│   ├── Footer.tsx
+│   ├── Navbar.tsx         # Section scroll navbar
+│   ├── NoiseOverlay.tsx   # Noise texture overlay
+│   ├── ProductBottleScroll.tsx  # Canvas scroll animation
+│   ├── ProductDetails.tsx
+│   └── ProductTextOverlays.tsx  # Scroll-driven text layers
 ├── data/
-│   └── products.ts         # All flavor data (details, pricing, glows)
-│
+│   └── products.ts        # All flavor/product data (single source of truth)
 ├── lib/
-│   └── easing.ts           # Shared Framer Motion easing constants
-│
+│   ├── easing.ts          # Shared animation easing constants
+│   └── ProductContext.tsx # Global product state (active flavor)
 └── public/
-    ├── images/             # Frame sequence images (.webp)
-    ├── lassi.png
-    ├── chocolate.png
-    └── hazelnut.png
+    └── ...                # Frame sequences + product images
 ```
 
-## 🌐 Deploy to Netlify
+---
 
-```bash
-# Install Netlify CLI
-npm install -g netlify-cli
+## 🎯 Inspiration
 
-# Build and deploy to production
-npm run build
-netlify deploy --prod --dir=out
-```
+Inspired by premium product storytelling experiences like Apple, Nike, and modern Awwwards-winning websites.
 
-Or connect the GitHub repository to Netlify and set:
-- **Build command**: `npm run build`
-- **Publish directory**: `out`
+---
 
-## 📄 License
+## 👨‍💻 Author
 
-MIT © Smoodh
+Built by **Sarthak Agarwal**
+
+---
+
+⭐ If you like this project, consider starring the repo!
