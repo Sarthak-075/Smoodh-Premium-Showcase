@@ -37,3 +37,24 @@ next-env.d.ts
 
 # Local Netlify folder
 .netlify
+
+# Build logs and process artifacts
+build.log
+*.log
+
+# Stray binary/media files in project root (should live in /public or externally)
+*.zip
+*.mp4
+*.jpg
+*.webp
+
+# GSD/agent workflow files (not needed in published repo)
+.gsd/
+.agent/
+.gemini/
+GSD-STYLE.md
+PROJECT_RULES.md
+model_capabilities.yaml
+adapters/
+docs/
+scripts/

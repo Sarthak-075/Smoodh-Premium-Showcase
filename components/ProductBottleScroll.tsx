@@ -1,10 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { useScroll, useSpring, useTransform, cubicBezier, useMotionValueEvent } from 'framer-motion';
 import ProductTextOverlays from './ProductTextOverlays';
+import type { Flavor } from '@/data/products';
 
-// ─── Types ─────────────────────────────────────────────────────────────────────
-export type Flavor = 'lassi' | 'chocolate' | 'hazelnut';
+// Re-export Flavor so other files that imported it from here continue to work
+export type { Flavor };
 
 interface ProductBottleScrollProps {
   flavor: Flavor;
@@ -14,10 +16,6 @@ interface ProductBottleScrollProps {
 // ─── Helpers ───────────────────────────────────────────────────────────────────
 function getFramePath(flavor: Flavor, index: number) {
   return `/images/${flavor}/ (${index + 1}).webp`;
-}
-
-function lerp(a: number, b: number, t: number) {
-  return a + (b - a) * t;
 }
 
 // ─── Component ─────────────────────────────────────────────────────────────────
@@ -103,52 +101,45 @@ export default function ProductBottleScroll({
     }
 
     return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flavor, totalFrames, drawFrame]);
 
-  // ─── RAF animation loop with lerp and Viewport Lock ──────────────────────────
-  useEffect(() => {
-    if (!isReady) return;
+  // ─── Scroll physics with Framer Motion ──────────────────────────────────────
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
-    const LERP_SPEED = 0.12;
+  // 1. Cinematic custom easing (adds pace variation across the scroll length)
+  const customEase = cubicBezier(0.16, 1, 0.3, 1);
+  const easedProgress = useTransform(scrollYProgress, [0, 1], [0, 1], { ease: customEase });
 
-    const loop = () => {
-      // Only process if in viewport to save CPU/GPU
-      if (isInViewRef.current) {
-        const next = lerp(currentFrameRef.current, targetFrameRef.current, LERP_SPEED);
-        if (Math.abs(next - currentFrameRef.current) > 0.01) {
-          currentFrameRef.current = next;
-          drawFrame(next);
-        }
-      }
-      rafRef.current = requestAnimationFrame(loop);
-    };
+  // 2. Spring Physics (creates organic acceleration / deceleration)
+  const smoothProgress = useSpring(easedProgress, {
+    stiffness: 80,    // Balance between responsiveness and floatiness
+    damping: 25,      // Friction to prevent bouncy overshoot
+    mass: 1.5         // Heavier mass generates buttery-smooth momentum and deceleration
+  });
 
-    rafRef.current = requestAnimationFrame(loop);
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, [isReady, drawFrame]);
-
-  // ─── Scroll → frame mapping ─────────────────────────────────────────────────
-  useEffect(() => {
-    const onScroll = () => {
-      const container = containerRef.current;
-      if (!container || !isInViewRef.current) return;
-      
-      const { top, height } = container.getBoundingClientRect();
-      const viewH = window.innerHeight;
-      const scrollable = height - viewH;
-      const progress = Math.min(Math.max(-top / scrollable, 0), 1);
-      targetFrameRef.current = progress * (totalFrames - 1);
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [totalFrames]);
+  // 3. React to physics updates at screen refresh rate
+  useMotionValueEvent(smoothProgress, "change", (latest) => {
+    if (!isReady || !isInViewRef.current) return;
+    
+    // Map physical progress strictly to the frame range
+    const targetFrame = latest * (totalFrames - 1);
+    
+    // Safety clamp in case the physics spring overshoots boundaries
+    const clampedFrame = Math.max(0, Math.min(targetFrame, totalFrames - 1));
+    
+    // Update ref so resize event can redraw the current state
+    currentFrameRef.current = clampedFrame;
+    
+    // drawFrame handles the integer rounding mapping to image arrays internally
+    drawFrame(clampedFrame);
+  });
 
   // ─── Responsive DPR-correct canvas sizing ──────────────────────────────────
   useEffect(() => {
@@ -231,8 +222,8 @@ export default function ProductBottleScroll({
       {/* Sticky canvas and overlays */}
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         
-        {/* Strong animated glow behind the canvas specifically for depth & contrast */}
-        <div 
+        {/* Cinematic backlight glow */}
+        <div
           style={{
             position: 'absolute',
             width: '60vw',
@@ -243,7 +234,7 @@ export default function ProductBottleScroll({
             filter: 'blur(100px)',
             background: flavor === 'lassi' ? '#fbbf24' : flavor === 'chocolate' ? '#a8a29e' : '#f97316',
             zIndex: 0,
-            transform: 'translateY(-10%)'
+            transform: 'translateY(-10%)',
           }}
         />
 
