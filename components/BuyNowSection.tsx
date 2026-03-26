@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion';
 import { useRef, MouseEvent } from 'react';
 
 interface Props {
@@ -13,7 +13,7 @@ const pricingData = {
   hazelnut: { price: "$5.99", accent: "from-orange-400 to-amber-600", glow: "hover:shadow-[0_0_40px_rgba(251,146,60,0.3)]", shadow: "rgba(251,146,60,0.2)" }
 };
 
-const easing = [0.16, 1, 0.3, 1]; // Premium cubic-bezier
+const easing = [0.16, 1, 0.3, 1] as const; // Premium cubic-bezier
 
 export default function BuyNowSection({ flavor }: Props) {
   const data = pricingData[flavor as keyof typeof pricingData] || pricingData.lassi;

@@ -29,7 +29,7 @@ const flavorData = {
   }
 };
 
-const easing = [0.16, 1, 0.3, 1]; // Premium cubic-bezier
+const easing = [0.16, 1, 0.3, 1] as const; // Premium cubic-bezier
 
 export default function ProductDetails({ flavor }: Props) {
   const data = flavorData[flavor as keyof typeof flavorData] || flavorData.lassi;

@@ -13,11 +13,11 @@ export default function NoiseOverlay() {
         }}
       />
       
-      {/* Soft Vignette */}
+      {/* Soft Vignette - Adjusted for stronger cinematic contrast */}
       <div 
         className="pointer-events-none fixed inset-0 z-40 h-full w-full"
         style={{
-          background: 'radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.4) 100%)',
+          background: 'radial-gradient(circle at center, transparent 15%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0.9) 100%)',
         }}
       />
     </>

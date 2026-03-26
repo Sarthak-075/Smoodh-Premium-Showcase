@@ -231,19 +231,35 @@ export default function ProductBottleScroll({
       {/* Sticky canvas and overlays */}
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         
-        {/* Animated glow behind the canvas specifically for depth */}
+        {/* Strong animated glow behind the canvas specifically for depth & contrast */}
         <div 
           style={{
             position: 'absolute',
-            width: '50vw',
-            height: '50vw',
+            width: '60vw',
+            height: '60vw',
             borderRadius: '50%',
-            opacity: isReady ? 0.25 : 0,
+            opacity: isReady ? 0.6 : 0,
             transition: 'opacity 1.5s ease 0.5s',
-            filter: 'blur(120px)',
-            background: flavor === 'lassi' ? '#f59e0b' : flavor === 'chocolate' ? '#78716c' : '#f97316',
+            filter: 'blur(100px)',
+            background: flavor === 'lassi' ? '#fbbf24' : flavor === 'chocolate' ? '#a8a29e' : '#f97316',
             zIndex: 0,
-            transform: 'translateY(-5%)'
+            transform: 'translateY(-10%)'
+          }}
+        />
+
+        {/* Soft simulated floor shadow beneath the bottle */}
+        <div 
+          style={{
+            position: 'absolute',
+            bottom: '15vh',
+            width: '40vw',
+            height: '5vh',
+            borderRadius: '50%',
+            opacity: isReady ? 0.5 : 0,
+            transition: 'opacity 1.5s ease 0.5s',
+            filter: 'blur(20px)',
+            background: '#000000',
+            zIndex: 0,
           }}
         />
 
@@ -251,11 +267,13 @@ export default function ProductBottleScroll({
           ref={canvasRef}
           style={{
             display: 'block',
-            background: '#050505',
+            background: 'transparent',
             opacity: isReady ? 1 : 0,
             transition: 'opacity 0.6s ease',
             imageRendering: 'auto',
             willChange: 'transform, opacity',
+            position: 'relative',
+            zIndex: 5,
           }}
         />
         {/* Render overlays when ready to prevent weird un-synced text jumping initially */}
