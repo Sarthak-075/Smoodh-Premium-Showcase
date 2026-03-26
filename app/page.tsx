@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { EASE_OUT, EASE_IN } from '@/lib/easing';
 import { PRODUCTS, BG_GLOW } from '@/data/products';
 import type { Flavor } from '@/data/products';
+import { useProduct } from '@/lib/ProductContext';
 import ProductBottleScroll from '@/components/ProductBottleScroll';
 import ProductDetails from '@/components/ProductDetails';
 import BuyNowSection from '@/components/BuyNowSection';
@@ -35,14 +35,7 @@ const pageVariants = {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Home() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const navigate = useCallback((nextIndex: number) => {
-    if (nextIndex < 0 || nextIndex >= PRODUCTS.length) return;
-    setActiveIndex(nextIndex);
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, []);
-
+  const { activeIndex, navigate } = useProduct();
   const activeFlavor: Flavor = PRODUCTS[activeIndex].flavor;
 
   return (
