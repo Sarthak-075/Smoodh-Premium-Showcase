@@ -133,7 +133,7 @@ export const PRICING_DATA: Record<Flavor, {
   /** rgba shadow color for radial card glow */
   shadow: string;
 }> = {
-  lassi:     { price: '₹45', accent: 'from-yellow-300 to-amber-500',  glow: 'hover:shadow-[0_0_40px_rgba(251,191,36,0.3)]',  shadow: 'rgba(251,191,36,0.2)'  },
-  chocolate: { price: '₹49', accent: 'from-stone-400 to-stone-600',   glow: 'hover:shadow-[0_0_40px_rgba(168,162,158,0.3)]', shadow: 'rgba(168,162,158,0.2)' },
-  hazelnut:  { price: '₹55', accent: 'from-orange-400 to-amber-600',  glow: 'hover:shadow-[0_0_40px_rgba(251,146,60,0.3)]',  shadow: 'rgba(251,146,60,0.2)'  },
+  lassi:     { price: '₹30', accent: 'from-yellow-300 to-amber-500',  glow: 'hover:shadow-[0_0_40px_rgba(251,191,36,0.3)]',  shadow: 'rgba(251,191,36,0.2)'  },
+  chocolate: { price: '₹30', accent: 'from-stone-400 to-stone-600',   glow: 'hover:shadow-[0_0_40px_rgba(168,162,158,0.3)]', shadow: 'rgba(168,162,158,0.2)' },
+  hazelnut:  { price: '₹30', accent: 'from-orange-400 to-amber-600',  glow: 'hover:shadow-[0_0_40px_rgba(251,146,60,0.3)]',  shadow: 'rgba(251,146,60,0.2)'  },
 };

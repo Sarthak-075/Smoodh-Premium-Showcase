@@ -26,6 +26,7 @@ export default function ProductDetails({ flavor }: Props) {
 
   return (
     <section
+      id="about"
       ref={sectionRef}
       className="relative z-10 w-full bg-[#050505] py-32 px-6 md:px-12 lg:px-24 border-t border-white/5 overflow-hidden"
     >

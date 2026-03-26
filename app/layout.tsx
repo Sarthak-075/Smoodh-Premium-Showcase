@@ -3,6 +3,7 @@ import { Outfit } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import NoiseOverlay from '@/components/NoiseOverlay';
+import Chatbot from '@/components/Chatbot';
 import { ProductProvider } from '@/lib/ProductContext';
 
 const outfit = Outfit({ subsets: ['latin'] });
@@ -20,11 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.className} antialiased bg-[#050505]`}>
-        {/* ProductProvider wraps the entire tree so Navbar and page share state */}
         <ProductProvider>
           <NoiseOverlay />
           <Navbar />
           {children}
+          {/* Chatbot floats above all content, bottom-right */}
+          <Chatbot />
         </ProductProvider>
       </body>
     </html>

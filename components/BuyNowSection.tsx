@@ -43,7 +43,7 @@ export default function BuyNowSection({ flavor }: Props) {
   const yCard = useTransform(scrollYProgress, [0, 1], [100, -50]);
 
   return (
-    <section ref={sectionRef} className="relative z-10 w-full bg-[#050505] pt-12 pb-48 px-6">
+    <section id="buy" ref={sectionRef} className="relative z-10 w-full bg-[#050505] pt-12 pb-48 px-6">
       <div className="max-w-5xl mx-auto">
         <motion.div
           style={{ y: yCard }}
@@ -84,11 +84,11 @@ export default function BuyNowSection({ flavor }: Props) {
             <span className={`text-7xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b ${data.accent} drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]`}>
               {data.price}
             </span>
-            <span className="text-gray-400 text-2xl font-medium mb-3">/ bottle</span>
+            <span className="text-gray-400 text-2xl font-medium mb-3">/ 150ml bottle</span>
           </motion.div>
 
           {/* Feature grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-3xl mb-14 relative z-10">
+          <div id="benefits" className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-3xl mb-14 relative z-10">
             {FEATURES.map((feature, i) => (
               <motion.div
                 key={feature.title}
