@@ -64,7 +64,7 @@ export default function BuyNowSection({ flavor }: Props) {
             whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.1, ease: EASE_OUT }}
-            className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter relative z-10 drop-shadow-lg"
+            className="text-4xl md:text-6xl font-black text-white mb-12 tracking-tighter relative z-10 drop-shadow-lg"
           >
             Ready to Experience{' '}
             <span className="capitalize text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
@@ -73,22 +73,8 @@ export default function BuyNowSection({ flavor }: Props) {
             ?
           </motion.h2>
 
-          {/* Price */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, delay: 0.2, ease: EASE_SPRING }}
-            className="flex items-end justify-center gap-2 mb-12 relative z-10"
-          >
-            <span className={`text-7xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b ${data.accent} drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]`}>
-              {data.price}
-            </span>
-            <span className="text-gray-400 text-2xl font-medium mb-3">/ 150ml bottle</span>
-          </motion.div>
-
           {/* Feature grid */}
-          <div id="benefits" className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-3xl mb-14 relative z-10">
+          <div id="benefits" className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-3xl mb-16 relative z-10">
             {FEATURES.map((feature, i) => (
               <motion.div
                 key={feature.title}
@@ -105,6 +91,22 @@ export default function BuyNowSection({ flavor }: Props) {
               </motion.div>
             ))}
           </div>
+
+          {/* Price */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 15 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, delay: 0.5, ease: EASE_SPRING }}
+            className="flex flex-col items-center justify-center mb-8 relative z-10 group/price"
+          >
+            <span className="text-[5.5rem] md:text-[7.5rem] leading-none font-black text-white drop-shadow-[0_0_40px_rgba(255,255,255,0.3)] tracking-tighter mb-2 transition-transform duration-500 group-hover/price:scale-105">
+              {data.price}
+            </span>
+            <span className="text-gray-400 text-xl font-medium tracking-wide pb-2">
+              per 150ml bottle
+            </span>
+          </motion.div>
 
           {/* Magnetic CTA Button */}
           <motion.button
